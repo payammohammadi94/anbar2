@@ -94,11 +94,11 @@ def deliveredProducts(request):
         if search_form_data.is_valid():
 
             search_text_form = search_form_data.cleaned_data["search_text"]
-            print(search_text_form)
+            
             
             data = productRegistrationModel.objects.filter(Q(user__username__contains=search_text_form) | Q(first_last_name__contains=search_text_form))
         else:
-            data = productRegistrationModel.objects.all().order_by('-create')
+            data = productRegistrationModel.objects.filter(status=False).order_by('-create')
         
         context = {"datas":data}
         return render(request,"productRegister/delivered-products.html",context)
