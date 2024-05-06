@@ -12,3 +12,11 @@ class productRegisterForm(forms.Form):
 
 class SearchBoxForm(forms.Form):
     search_text = forms.CharField(max_length=100)
+
+
+
+class productRegisterEditForm(forms.ModelForm):
+   
+    class Meta:
+        model = productRegistrationModel
+        fields = ['first_last_name','prudoct_name','prudoct_code']
