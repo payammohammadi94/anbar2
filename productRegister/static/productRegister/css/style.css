@@ -30,12 +30,12 @@ p{
 
 a{
 	text-decoration: none;
-	color: #d65814;
+	color: #001C18;
 }
 
 a:hover{
 	text-decoration: none;
-	color: #a93c01;
+	color: #001C18;
 }
 
 a:hover,a:active,a:focus {
@@ -60,7 +60,7 @@ hr{
 
 header .navbar { 
 	margin: 0;
-	background: #d65814;
+	background: #001C18;
 	border-radius: 0;
 	border-bottom: 2px solid rgba(0,0,0,0.2); 
 	box-shadow: 0 1px 15px rgba(0,0,0,0.2);
@@ -104,7 +104,7 @@ header .navbar-nav .dropdown-menu:after {
 
 header .navbar-nav .dropdown-menu:before {
 	border-color: rgba(194, 225, 245, 0);
-	border-bottom-color: #d65814;
+	border-bottom-color: #001C18;
 	border-width: 8px;
 	margin-right: -1px;
 }
@@ -180,12 +180,15 @@ header .navbar-brand img {
 .default-heading  {
 	margin-top: 20px;
 	margin-bottom: 10px;
+	display: flex;
+	place-content: center;
 }
 .default-heading h2{
 	margin-top: 0;
 	font-size: 30px;
-	color: #676767;
-	font-weight: 400;
+	color: #001C18;
+	font-weight: 600;
+	font-size: 65px;
 }
 
 /*
@@ -430,6 +433,7 @@ footer .social a  i {
 footer .copy-right {
 	margin-top: 5px;
 }
+
 
 /*
  * Responsive CSS 
