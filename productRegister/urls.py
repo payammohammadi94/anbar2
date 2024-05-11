@@ -11,5 +11,6 @@ urlpatterns = [
     path("product-registration-delete/<int:id>/",views.productRegistrationDelete_view,name="productRegistrationDelete"), 
     path("delivered-products/",views.deliveredProducts,name="delivered-products"),
     path("export-excel/",views.export_excel_view,name="export_excel"), 
-    path("export-pdf/",views.export_pdf_view,name="export_pdf"), 
+    path("export-pdf/",views.export_pdf_view,name="export_pdf"),
+    path("stop-page/",views.stop_view,name="stop"),  
 ]

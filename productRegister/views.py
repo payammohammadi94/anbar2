@@ -27,7 +27,7 @@ def productRegistration_view(request):
         if product_data.is_valid():
             data_clean = product_data.cleaned_data
             
-            print(data_clean)
+            
 
 
             user = data_clean["user"]
@@ -44,7 +44,7 @@ def productRegistration_view(request):
                 else:
                     return HttpResponse("this user is not found")
             else:
-                return HttpResponse("just super user can save data")
+                return redirect("productRegister:stop")
         else:
             return HttpResponse("data is not valid")
 
@@ -75,7 +75,7 @@ def productRegistrationEdit_view(request,id):
         context = {"product_form_edit":product_form_edit,"first_last_name":first_last_name,"product_name":product_name,"product_code":product_code}
         return render(request,"productRegister/product-edit.html",context)
     else:
-        return HttpResponse("you can not delete record.")
+        return redirect("productRegister:stop")
         
     
 
@@ -85,7 +85,7 @@ def productRegistrationDelete_view(request,id):
         product_delete.delete()      
         return redirect("productRegister:delivered-products")
     else:
-        return HttpResponse("you can not delete record.")
+        return redirect("productRegister:stop")
         
 
 
@@ -109,7 +109,10 @@ def deliveredProducts(request):
         
         context = {"datas":data}
         return render(request,"productRegister/delivered-products.html",context)
+    else:
+        return redirect("productRegister:stop")
     
+
 # برای خروجی گرفتن اکسل
 @login_required(login_url='/accounts/login/')   
 def export_excel_view(request):
@@ -148,9 +151,15 @@ def export_excel_view(request):
         workBook.save(response)
         return response
     else:
-        return HttpResponse("you can not delete record.") 
+        return redirect("productRegister:stop") 
     
 
 
 def export_pdf_view(request):
     pass
+
+
+
+
+def stop_view(request):
+    return render(request,"productRegister/super-user-control.html")
