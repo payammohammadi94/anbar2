@@ -4,7 +4,14 @@ from .forms import productRegisterForm,SearchBoxForm,productRegisterEditForm
 from .models import productRegistrationModel
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.http import HttpResponse
+import xlwt
+from datetime import datetime, timezone
+from jalali_date import datetime2jalali
 # Create your views here.
+
+
+
 
 @login_required(login_url='/accounts/login/')
 def home_view(request):
@@ -96,9 +103,54 @@ def deliveredProducts(request):
             search_text_form = search_form_data.cleaned_data["search_text"]
             
             
-            data = productRegistrationModel.objects.filter(Q(user__username__contains=search_text_form) | Q(first_last_name__contains=search_text_form))
+            data = productRegistrationModel.objects.filter(Q(user__username__contains=search_text_form) | Q(first_last_name__contains=search_text_form) | Q(prudoct_name__contains=search_text_form) | Q(prudoct_code__contains=search_text_form))
         else:
             data = productRegistrationModel.objects.filter(status=False).order_by('-create')
         
         context = {"datas":data}
         return render(request,"productRegister/delivered-products.html",context)
+    
+# برای خروجی گرفتن اکسل
+@login_required(login_url='/accounts/login/')   
+def export_excel_view(request):
+    if request.user.is_superuser:
+        response = HttpResponse(content_type = "application/ms-excel")
+        response["content-Disposition"] ='attachment;filename=delivered-products-'+str(datetime2jalali(datetime.now())).split(".")[0]+'.xls'
+        
+        workBook = xlwt.Workbook(encoding="utf-8")
+        workSheet = workBook.add_sheet("delivered-products")
+        
+        columns = ["Username", "Full name", "Prudoct Name", "Prudoct Code", "Date-Time",]
+        rowNumber = 0
+        
+        for col in range(len(columns)):
+            workSheet.write(rowNumber,col,columns[col])
+        
+        data_for_excel = productRegistrationModel.objects.filter(status=False).order_by('-create').values_list(
+            "user",
+            "first_last_name",
+            "prudoct_name",
+            "prudoct_code",
+            "create")
+        
+        for data in data_for_excel:
+            rowNumber += 1
+
+            for col in range(len(data)):
+                if col==0:
+                    workSheet.write(rowNumber,col,User.objects.get(pk=data[col]).username)
+                
+                
+                elif col ==4:
+                    workSheet.write(rowNumber,col,str(datetime2jalali(data[col])).split(".")[0])
+                else:
+                    workSheet.write(rowNumber,col,data[col])
+        workBook.save(response)
+        return response
+    else:
+        return HttpResponse("you can not delete record.") 
+    
+
+
+def export_pdf_view(request):
+    pass
