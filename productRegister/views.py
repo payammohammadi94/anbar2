@@ -86,8 +86,10 @@ def productRegistrationEdit_view(request):
         
     
 
-def productRegistrationDelete_view(request,id):
+def productRegistrationDelete_view(request):
     if request.user.is_superuser:
+        
+        id = request.session.get('delete_prodoct_key')
         product_delete = productRegistrationModel.objects.get(pk=id)
         product_delete.delete()      
         return redirect("productRegister:delivered-products")
@@ -175,8 +177,9 @@ def stop_view(request):
 
 #این ویو برای این نوشته شده که وقتی ادمین میخواد محصولی را ادیت یا حذف کند پسورد ادمین را باید وارد کند اگر درست بود اجازه حذف یا ادیت را میدیم.
 @login_required(login_url='/accounts/login/')
-def check_password_view(request,id):
+def check_password_edit_view(request,id):
     if request.user.is_superuser:
+        
         if request.method=="POST":
             form = checkPasswordForm(request.POST)
             
@@ -198,11 +201,50 @@ def check_password_view(request,id):
         else:
             form = checkPasswordForm()
         
-        context = {"form":form}
+        context = {"text":"check password for edite prodoct"}
         
         return render(request,'productRegister/check-password.html',context)
                          
         
     else:
         return redirect("productRegister:stop")
+
+
+
+
+#این ویو برای این نوشته شده که وقتی ادمین میخواد محصولی را ادیت یا حذف کند پسورد ادمین را باید وارد کند اگر درست بود اجازه حذف یا ادیت را میدیم.
+@login_required(login_url='/accounts/login/')
+def check_password_delete_view(request,id):
+    if request.user.is_superuser:
         
+        if request.method=="POST":
+            form = checkPasswordForm(request.POST)
+            
+            if form.is_valid():
+                input_password = form.cleaned_data["input_password"]
+                
+                #اینجا پسورد سوپر یوزر را درون دیتابیس به صورت هش میگیریم بعد چک میکنیم با هش پسورد وارد شده
+                user = User.objects.get(pk=request.user.id)
+                password_hash = user.password
+                
+                check_pass = check_password(input_password,password_hash)
+                if check_pass:
+                    #ای دی محصول را درون سکشن ذخیره میکنم که درون صفحه ادیت بگیریم
+                    request.session['delete_prodoct_key'] = id
+                    
+                    return redirect("productRegister:productRegistrationDelete")
+                else:
+                    return redirect("productRegister:stop")
+        else:
+            form = checkPasswordForm()
+        
+        context = {"text":"check password for delete prodoct"}
+        
+        return render(request,'productRegister/check-password.html',context)
+                         
+        
+    else:
+        return redirect("productRegister:stop")
+
+
+
