@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.decorators import login_required
-from .forms import productRegisterForm,SearchBoxForm,productRegisterEditForm
+from .forms import productRegisterForm,SearchBoxForm,productRegisterEditForm,checkPasswordForm
 from .models import productRegistrationModel
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -8,6 +8,8 @@ from django.http import HttpResponse
 import xlwt
 from datetime import datetime, timezone
 from jalali_date import datetime2jalali
+from django.contrib.auth.hashers import check_password
+
 # Create your views here.
 
 
@@ -59,8 +61,9 @@ def productRegistration_view(request):
 
 @login_required(login_url='/accounts/login/')
 
-def productRegistrationEdit_view(request,id):
+def productRegistrationEdit_view(request):
     if request.user.is_superuser:
+        id = request.session.get('edit_prodoct_key')
         product_edit = productRegistrationModel.objects.get(pk=id)
         first_last_name = product_edit.first_last_name
         product_name = product_edit.prudoct_name
@@ -167,3 +170,39 @@ def export_pdf_view(request):
 
 def stop_view(request):
     return render(request,"productRegister/super-user-control.html")
+
+
+
+#این ویو برای این نوشته شده که وقتی ادمین میخواد محصولی را ادیت یا حذف کند پسورد ادمین را باید وارد کند اگر درست بود اجازه حذف یا ادیت را میدیم.
+@login_required(login_url='/accounts/login/')
+def check_password_view(request,id):
+    if request.user.is_superuser:
+        if request.method=="POST":
+            form = checkPasswordForm(request.POST)
+            
+            if form.is_valid():
+                input_password = form.cleaned_data["input_password"]
+                
+                #اینجا پسورد سوپر یوزر را درون دیتابیس به صورت هش میگیریم بعد چک میکنیم با هش پسورد وارد شده
+                user = User.objects.get(pk=request.user.id)
+                password_hash = user.password
+                
+                check_pass = check_password(input_password,password_hash)
+                if check_pass:
+                    #ای دی محصول را درون سکشن ذخیره میکنم که درون صفحه ادیت بگیریم
+                    request.session['edit_prodoct_key'] = id
+                    
+                    return redirect("productRegister:productRegistrationEdit")
+                else:
+                    return redirect("productRegister:stop")
+        else:
+            form = checkPasswordForm()
+        
+        context = {"form":form}
+        
+        return render(request,'productRegister/check-password.html',context)
+                         
+        
+    else:
+        return redirect("productRegister:stop")
+        

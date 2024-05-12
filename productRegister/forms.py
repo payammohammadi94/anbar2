@@ -22,3 +22,6 @@ class productRegisterEditForm(forms.ModelForm):
     class Meta:
         model = productRegistrationModel
         fields = ['first_last_name','prudoct_name','prudoct_code']
+        
+class checkPasswordForm(forms.Form):
+    input_password = forms.CharField(max_length=100)
