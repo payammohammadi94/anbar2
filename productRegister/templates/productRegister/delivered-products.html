@@ -3,7 +3,6 @@
 <title>product-register</title>
 {% endblock title %}
 
-
 {% block body %}
 <div class="wrapper">
 
@@ -68,8 +67,12 @@
                         <td>{{data.get_jalali_date_create}}</td>
                         <td>{{data.prudoct_name}}</td>
                         <td>{{data.prudoct_code}}</td>
-                        <td>
-                          <img src={{data.product_image.url}} alt="no photo" style="width: 100px;height: 100px;"/></td>
+                        <td class="product-image-class" >
+                          {% if data.product_image%}
+                            <img src={{data.product_image.url}} alt="no photo" style="width: 30px;height: 30px;"/></td>
+                            {% else %}
+                            <img src="" alt="no photo" style="width: 40px;height: 40px;"/></td>
+                          {% endif %}
                         <td>
                           <a href="{% url 'productRegister:productRegistrationEdit' data.id %}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">

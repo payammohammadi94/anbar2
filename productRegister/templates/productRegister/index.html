@@ -27,33 +27,39 @@
 				<div class="row">
 					<div class="col-md-4 col-sm-4">
 						<!-- event item -->
-						<div class="event-item">
-							<!-- image -->
-							<img class="img-responsive" src="{% static "productRegister/img/poster/poster1.jpg" %}" alt="Events" />
-							<!-- heading -->
-							<h4><a href="{% url 'productRegister:productRegistration' %}">Product registration</a></h4>
-						</div>
+						<a href="{% url 'productRegister:productRegistration' %}">
+							<div class="event-item">
+								<!-- image -->
+								<img class="img-responsive" src="{% static "productRegister/img/poster/poster1.jpg" %}" alt="Events" />
+								<!-- heading -->
+								<h4 style="text-align: center;"><a href="{% url 'productRegister:productRegistration' %}">Product registration</a></h4>
+							</div>
+						</a>
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<!-- event item -->
-						<div class="event-item">
-							<!-- image -->
-							<img class="img-responsive" src="{% static "productRegister/img/poster/poster2.png" %}" alt="Events" />
-							<!-- heading -->
-							<h4><a href="{% url 'productRegister:delivered-products' %}">Delivered products</a></h4>
-							<!-- sub text -->
-							
-						</div>
+						 <a href="{% url 'productRegister:delivered-products' %}">
+							<div class="event-item">
+								<!-- image -->
+								<img class="img-responsive" src="{% static "productRegister/img/poster/poster2.png" %}" alt="Events" />
+								<!-- heading -->
+								<h4 style="text-align: center;"><a href="{% url 'productRegister:delivered-products' %}">Delivered products</a></h4>
+								<!-- sub text -->
+								
+							</div>
+						</a>
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<!-- event item -->
-						<div class="event-item">
-							<!-- image -->
-							<img class="img-responsive" src="{% static "productRegister/img/poster/poster3.jpg" %}" alt="Events" />
-							<!-- heading -->
-							<h4><a href="#">Total list</a></h4>
-							<!-- sub text -->
-						</div>
+						<a href="#">
+							<div class="event-item">
+								<!-- image -->
+								<img class="img-responsive" src="{% static "productRegister/img/poster/poster3.jpg" %}" alt="Events" />
+								<!-- heading -->
+								<h4 style="text-align: center;"><a href="#">Total list</a></h4>
+								<!-- sub text -->
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>

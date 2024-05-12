@@ -434,6 +434,11 @@ footer .copy-right {
 	margin-top: 5px;
 }
 
+.product-image-class:hover img{
+	width: 100px !important;
+	height: 100px !important;
+}
+
 
 /*
  * Responsive CSS 
