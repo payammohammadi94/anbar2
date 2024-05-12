@@ -22,7 +22,7 @@
 			<div class="container">
 				<div class="default-heading">
 					<!-- heading -->
-					<h2>List of Options</h2>
+					<h2>Company</h2>
 				</div>
 				<div class="row">
 					<div class="col-md-4 col-sm-4">
@@ -62,11 +62,110 @@
 						</a>
 					</div>
 				</div>
+				
+			</div>
+		</div>
+
+		<!-- events -->
+		<div class="event" id="event">
+			<div class="container">
+				<div class="default-heading">
+					<!-- heading -->
+					<h2>Out Company</h2>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<a href="{% url 'productRegister:productRegistration' %}">
+							<div class="event-item">
+								<!-- image -->
+								<img class="img-responsive" src="{% static "productRegister/img/poster/poster1.jpg" %}" alt="Events" />
+								<!-- heading -->
+								<h4 style="text-align: center;"><a href="{% url 'productRegister:productRegistration' %}">Product registration</a></h4>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+							<a href="{% url 'productRegister:delivered-products' %}">
+							<div class="event-item">
+								<!-- image -->
+								<img class="img-responsive" src="{% static "productRegister/img/poster/poster2.png" %}" alt="Events" />
+								<!-- heading -->
+								<h4 style="text-align: center;"><a href="{% url 'productRegister:delivered-products' %}">Delivered products</a></h4>
+								<!-- sub text -->
+								
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<a href="#">
+							<div class="event-item">
+								<!-- image -->
+								<img class="img-responsive" src="{% static "productRegister/img/poster/poster3.jpg" %}" alt="Events" />
+								<!-- heading -->
+								<h4 style="text-align: center;"><a href="#">Total list</a></h4>
+								<!-- sub text -->
+							</div>
+						</a>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 		<!-- events end -->
-		
 
+		<!-- events -->
+		<div class="event" id="event">
+			<div class="container">
+				<div class="default-heading">
+					<!-- heading -->
+					<h2>In Company</h2>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<a href="{% url 'productRegister:productRegistration' %}">
+							<div class="event-item">
+								<!-- image -->
+								<img class="img-responsive" src="{% static "productRegister/img/poster/poster1.jpg" %}" alt="Events" />
+								<!-- heading -->
+								<h4 style="text-align: center;"><a href="{% url 'productRegister:productRegistration' %}">Product registration</a></h4>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+							<a href="{% url 'productRegister:delivered-products' %}">
+							<div class="event-item">
+								<!-- image -->
+								<img class="img-responsive" src="{% static "productRegister/img/poster/poster2.png" %}" alt="Events" />
+								<!-- heading -->
+								<h4 style="text-align: center;"><a href="{% url 'productRegister:delivered-products' %}">Delivered products</a></h4>
+								<!-- sub text -->
+								
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<a href="#">
+							<div class="event-item">
+								<!-- image -->
+								<img class="img-responsive" src="{% static "productRegister/img/poster/poster3.jpg" %}" alt="Events" />
+								<!-- heading -->
+								<h4 style="text-align: center;"><a href="#">Total list</a></h4>
+								<!-- sub text -->
+							</div>
+						</a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
 		
 		<!-- footer -->
 			{% comment %} {% include "./footer.html" %} {% endcomment %}
