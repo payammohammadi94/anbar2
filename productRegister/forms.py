@@ -6,6 +6,8 @@ class productRegisterForm(forms.Form):
     first_last_name = forms.CharField(max_length=200)
     prudoct_name = forms.CharField(max_length=200)
     prudoct_code = forms.CharField(max_length=200)
+    
+    product_image = forms.ImageField()
 
 
 

@@ -23,10 +23,11 @@ def home_view(request):
 def productRegistration_view(request):
     
     if request.method=="POST":
-        product_data = productRegisterForm(request.POST)
+        product_data = productRegisterForm(request.POST,request.FILES)
+        print(product_data)
         if product_data.is_valid():
             data_clean = product_data.cleaned_data
-            
+            print(data_clean)
             
 
 
@@ -35,11 +36,14 @@ def productRegistration_view(request):
             prudoct_name = data_clean["prudoct_name"]
             prudoct_code = data_clean["prudoct_code"]
             
+            product_image = data_clean["product_image"]
+            
             username = User.objects.get(username=user)
             
             if request.user.is_superuser:
                 if username:
-                    productRegistrationModel.objects.create(user=username,first_last_name=first_last_name,prudoct_name=prudoct_name,prudoct_code=prudoct_code)
+                    productRegistrationModel.objects.create(user=username,first_last_name=first_last_name,prudoct_name=prudoct_name,prudoct_code=prudoct_code,product_image=product_image)
+                    
                     return redirect("productRegister:delivered-products")
                 else:
                     return HttpResponse("this user is not found")

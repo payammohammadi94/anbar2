@@ -51,6 +51,7 @@
                         <th scope="col">Date-Time</th>
                         <th scope="col">Prudoct Name</th>
                         <th scope="col">Prudoct Code</th>
+                        <th scope="col">Prudoct Image</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Return</th>
                         <th scope="col">Delete</th>
@@ -67,6 +68,8 @@
                         <td>{{data.get_jalali_date_create}}</td>
                         <td>{{data.prudoct_name}}</td>
                         <td>{{data.prudoct_code}}</td>
+                        <td>
+                          <img src={{data.product_image.url}} alt="no photo" style="width: 100px;height: 100px;"/></td>
                         <td>
                           <a href="{% url 'productRegister:productRegistrationEdit' data.id %}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
