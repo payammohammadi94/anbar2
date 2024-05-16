@@ -36,4 +36,4 @@ class amaniProductRegistrationModel(models.Model):
     
     
     def __str__(self):
-        return "{}-{}".format(self.first_last_name,self.prudoct_name)
+        return "{}-{}".format(self.first_last_name_out,self.prudoct_name)

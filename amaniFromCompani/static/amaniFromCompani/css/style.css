@@ -35,12 +35,12 @@ p {
 
 a {
     text-decoration: none;
-    color: #1061C8D9;
+    color: #001C18;
 }
 
 a:hover {
     text-decoration: none;
-    color: #1061C8D9;
+    color: #001C18;
 }
 
 a:hover,
@@ -66,7 +66,7 @@ hr {}
 
 header .navbar {
     margin: 0;
-    background: #001C18;
+    background: #1061C8D9;
     border-radius: 0;
     border-bottom: 2px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 15px rgba(0, 0, 0, 0.2);
@@ -201,7 +201,7 @@ header .navbar-brand img {
 .default-heading h2 {
     margin-top: 0;
     font-size: 30px;
-    color: #001C18;
+    color: #1061C8D9;
     font-weight: 600;
     font-size: 65px;
 }
