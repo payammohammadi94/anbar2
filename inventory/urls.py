@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/",include('accounts.urls',namespace='accounts')),
     path("",include('productRegister.urls',namespace='productRegister')),
+    path("amani/",include('amaniFromCompani.urls',namespace='amaniFromCompani')),
+
 ]
 
 

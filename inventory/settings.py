@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'jalali_date',
     'accounts.apps.AccountsConfig',
     'productRegister.apps.ProductregisterConfig',
+    'amaniFromCompani.apps.AmanifromcompaniConfig',
 ]
 
 MIDDLEWARE = [
