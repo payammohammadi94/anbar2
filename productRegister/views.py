@@ -60,7 +60,6 @@ def productRegistration_view(request):
 
 
 @login_required(login_url='/accounts/login/')
-
 def productRegistrationEdit_view(request):
     if request.user.is_superuser:
         id = request.session.get('edit_prodoct_key')
